@@ -9,7 +9,14 @@ const orderRoutes = require('./api/routes/orders');
 
 mongoose.connect('mongodb://node-iot-shop:' + 
 process.env.MONGO_ATLAS_PW + 
-'@node-rest-shop-shard-00-00-04yfe.mongodb.net:27017,node-rest-shop-shard-00-01-04yfe.mongodb.net:27017,node-rest-shop-shard-00-02-04yfe.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin');
+'@node-rest-shop-shard-00-00-04yfe.mongodb.net:27017,node-rest-shop-shard-00-01-04yfe.mongodb.net:27017,node-rest-shop-shard-00-02-04yfe.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin', 
+(err, db) => {
+    if(err){
+        console.log('Unable to connect to the server. Please start the server. Error:', err);
+    } else {
+        console.log('Connected to Server successfully!');
+    }
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
